@@ -1,0 +1,22 @@
+<div class="card mt-3">
+  <h5 class="card-header">
+    New Message
+  </h5>
+
+  <div class="card-body">
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+    <%= form_for @message do |f| %>
+      <div class="form-group py-3">
+        <%= f.text_area :body, class: "form-control", rows: 3 %>
+        <%= f.hidden_field :original_message_id%>
+      </div>
+
+      <div class="form-group mb-0 text-right">
+        <%= f.submit 'Send Message', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

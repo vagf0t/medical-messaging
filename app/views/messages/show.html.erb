@@ -1,0 +1,14 @@
+<div class="card my-3 ">
+  <h5 class="card-header">
+    <% if @message.outbox.user.is_doctor? %>Dr.<% end %>
+    <%= @message.outbox.user.full_name %>
+  </h5>
+  <div class="card-body">
+    <p class="card-text"><%= @message.body %></p>
+    <%= link_to "Reply", new_message_path(original_message_id: @message.id.to_s), class: "btn btn-primary" %>
+    <%= link_to "I've lost my prescription", prescription_message_path(original_message_id: @message.id.to_s), method: :post, class: "btn btn-primary" %>
+  </div>
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
+</div>
